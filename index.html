@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS BOOTSTRAP-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!--JS DE FUNCIONES-->
+    <script src="js/misFunciones.js" type="text/javascript"> </script>
+    
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.load('current', {packages: ['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawBasic);
+      </script>
+      
+
+    <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
+    <title>Ecuacion cuadratica</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+
+            <div class="row row-cols-sm row-cols-md row-cols-lg" style="background-color:antiquewhite;">
+                <div class="col-9">
+                    <h3 style="position: relative; top:25px">Resolución de Ecuaciones Cuadraticas por la formula general
+                        del
+                        tipo y = ax² + bx + c</h3>
+                </div>
+
+                <div class="col-3">
+                    <img src="imagenes/ecuacion_cuadratica.png" class="img" alt="">
+                </div>
+
+            </div>
+        </header>
+
+
+        <div class="main">
+            <div class="row row-cols-xs row-cols-sm row-cols-md row-cols-lg row-cols-xl">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <h2 class="var">a</h2>
+                </div>
+
+                <div class="col">
+                    <h2 class="var">b</h2>
+                </div>
+
+                <div class="col">
+                    <h2 class="var">c</h2>
+                </div>
+
+                <div class="col">
+
+                </div>
+
+            </div>
+
+            <form action="#" onsubmit="return false;">
+                <div class="row row-cols-sm row-cols-md row-cols-lg">
+                    <div class="col">
+                        <h2><b>y =</b></h2>
+                    </div>
+                    <div class="col">
+                        <input type="number" id="a" placeholder="0.0" required="" style="width: 100px;">
+                    </div>
+                    <div class="col">
+                        <input type="number" id="b" placeholder="0.0" required="" style="width: 100px;">
+                    </div>
+                    <div class="col">
+                        <input type="number" id="c" placeholder="0.0" required="" style="width: 100px;">
+                    </div>
+                    <div class="col">
+                        <button type="submit" onclick="calcular();" class="btn btn-success">Calcular</button>
+                    </div>
+            </form>
+
+            <br>
+
+            <div class="row row-cols-sm row-cols-md row-cols-lg">
+                <div class="col-10">
+
+                </div>
+
+                <div class="col-2">
+                    <button type="submit" onclick="verGrafica()" class="btn btn-success">Ver grafica</button>
+                </div>
+            </div>
+
+            <br><br>
+
+            <form action="#" onsubmit="return false;">
+                <div class="row row-cols-xs row-cols-sm row-cols-md row-cols-lg row-cols-xl">
+                    <div class="col">
+                        <h4 style="position: absolute;"><b>Intervalo</b></h4>
+                    </div>
+
+                    <div class="col">
+                         <input id="ini" type="number" style="width: 100px;">
+                    </div>
+
+                    <div class="col">
+                        <h2><b>Hasta</b></h2>
+                    </div>
+
+                    <div class="col">
+                        <input id="fin" type="number" style="width: 100px;">
+                    </div>
+
+                    <div class="col">
+                        <button type="submit" onclick="evaluar()" class="btn btn-success">Ver tabla</button>
+                    </div>
+                    <br><br>
+                    
+
+                </div>
+            </form>
+
+        </div>
+
+
+        <br><br>
+
+        <!--ECUACIÓN-->
+       <div id="div_ecuacion" style="display: none;" >
+        <div class="card">
+            <div class="card-body">
+                <div id="ecuacion"></div>
+            </div>
+        </div>
+        </div>
+
+        <!--FUNCION CUADRATICA-->
+                <div id="div_formula" style="display: none;">
+        <div class="card" onclick="calcular()">
+            <div class="card-body">
+                <div  id="formula">
+                    <math display='block'>
+                        <mi>x = </mi>
+                        <semantics>
+                            <mrow>
+                                <mfrac>
+                                    <mrow>
+                                        <mo>&#x2212;</mo>
+                                        <mi id="v1"></mi>
+                                        <mo>&#x00B1;</mo>
+                                        <msqrt>
+                                            <mrow>
+                                                <msup>
+                                                    <mi id="v2"></mi>
+                                                    <mn>2</mn>
+                                                </msup>
+                                                <mo>&#x2212;</mo>
+                                                <mn>4</mn>
+                                                <mi id="v3"></mi>
+                                                <mi id="v4"></mi>
+                                            </mrow>
+                                        </msqrt>
+                                    </mrow>
+                                    <mrow>
+                                        <mn>2</mn>
+                                        <mi id="v5"></mi>
+                                    </mrow>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding='MathType-MTEF'>MathType@MTEF@5@5@+=
+                                feaahqart1ev3aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLn
+                                hiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr
+                                4rNCHbGeaGqiVu0Je9sqqrpepC0xbbL8F4rqqrFfpeea0xe9Lq=Jc9
+                                vqaqpepm0xbba9pwe9Q8fs0=yqaqpepae9pg0FirpepeKkFr0xfr=x
+                                fr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGcbaWaaSaaaeaacq
+                                GHsislcaWGIbGaeyySae7aaOaaaeaacaWGIbWaaWbaaSqabeaacaaI
+                                YaaaaOGaeyOeI0IaaGinaiaadggacaWGJbaaleqaaaGcbaGaaGOmai
+                                aadggaaaaaaa@40DF@
+                            </annotation>
+                        </semantics>
+                    </math>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         <div id="div_respuesta" style="display: none;">
+        <div class="card">
+            <div class="card-body">
+                <div id="respuesta"></div>
+            </div>
+        </div>
+    </div>
+
+
+       <center>
+       <!-- Imprimir tabla -->
+        <div id="div_tabla" style="display: none; ">
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <div  id="mostrarTabla"></div>       
+            <div id="table_div"></div>
+        </div>
+    </div>
+    </div>
+    
+    <!-- Imprimir grafica -->    
+    <div id="div_grafica" style="display: none;">
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">             
+            <div id="chart_div" style="width: 600px; height: 400px;">Grafica XY</div>
+        </div>
+    </div>
+    </center>
+
+    </div>
+
+   
+    
+    
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row row-cols-sm row-cols-md row-cols-lg"
+                style="position: relative; top:280px; background-color: beige;">
+                <div class="col-10">
+                    <h4 style="text-align-last: center; position: relative; top: 30px;"><b>Desarrollado por:</b> Brayan Roa <b>codigo:</b>1151866, Felipe Mora<b>Codigo:</b>1151863</h4>
+                </div>
+
+                <div class="col-2" id="logo">
+                    <a href="https://ww2.ufps.edu.co/oferta-academica/ingenieria-de-sistemas" target="_blank">
+                        <img src="imagenes/logo_sistemas.jpg" alt="" style="position: relative; border-radius: 50px;" height="80px"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="js/funciones.js"></script> -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    
+
+</body>
+
+</html>

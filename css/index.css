@@ -1,0 +1,15 @@
+.img{
+    width: 150px;
+    border-radius: 25px;
+    position: static;
+    top: 5px;
+    left: -20px;
+}
+
+.var{
+    text-align: center;
+}
+
+#logo{
+    border-radius: 50px;
+}
